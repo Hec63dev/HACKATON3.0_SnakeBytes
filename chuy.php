@@ -93,28 +93,32 @@
     </main>
 
     <script>
-        const form = document.getElementById('chatForm');
-        const messages = document.getElementById('messages');
+        function sendMessage() {
+        const userMessage = document.getElementById('user-message').value;
+        if (userMessage.trim() === '') return;
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const userInput = document.getElementById('userInput').value;
-            messages.innerHTML += `<div class="message user"><strong>Tú:</strong> ${userInput}</div>`;
-            document.getElementById('userInput').value = '';
+        // Añadir el mensaje del usuario al chat
+        const chatBox = document.getElementById('chat-box');
+        chatBox.innerHTML += `<div class="message user-message">${userMessage}</div>`;
+        document.getElementById('user-message').value = '';
 
-            const response = await fetch('chat.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    message: userInput
-                })
-            });
-
-            const data = await response.json();
-            messages.innerHTML += `<div class="message bot"><strong>Bot:</strong> ${data.reply}</div>`;
+        // Enviar el mensaje al servidor
+        fetch('chat.php', {
+            method: 'POST',
+            body: new URLSearchParams({
+                'text': userMessage
+            }),
+        })
+        .then(response => response.text())
+        .then(data => {
+            // Añadir la respuesta del bot al chat
+            chatBox.innerHTML += `<div class="message bot-message">${data}</div>`;
+            chatBox.scrollTop = chatBox.scrollHeight; // Desplazar hacia abajo
+        })
+        .catch(error => {
+            chatBox.innerHTML += `<div class="message bot-message">Error al procesar tu mensaje.</div>`;
         });
+    }
 
         // Enviar primer mensaje automáticamente
         window.addEventListener('load', async () => {
