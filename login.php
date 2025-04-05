@@ -23,7 +23,7 @@
 
     <div class="links">
       <a href="registro.php">¿No tienes cuenta? Regístrate</a>
-      <a href="recuperar.php">¿Olvidaste tu contraseña?</a>
+      <a href="reset.php">¿Olvidaste tu contraseña?</a>
     </div>
   </div>
 </body>
