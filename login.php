@@ -8,11 +8,15 @@
 </head>
 <body>
   <div class="login-container">
+    <div class="titulo">
+      <h1>GenMyCV</h1>
+    </div>
+    <br>
     <h2>Iniciar Sesión</h2>
     <form action="backend/verificar.php" method="POST">
-      <label for="#">Correo electronico:</label><br>
-      <input type="text" name="correo" placeholder="Ingrese su Correo" required>
-      <label for="#">Contraseña:</label><br>
+      <label for="#">Correo electronico:</label>
+      <input type="text" name="correo" placeholder="Ingrese su Correo" required><br>
+      <label for="#">Contraseña:</label>
       <input type="password" name="contrasenia" placeholder="Ingrese su Contraseña" required>
       <button type="submit">Ingresar</button>
     </form>
