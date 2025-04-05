@@ -11,20 +11,26 @@
 </head>
 
 <body>
-    <?php 
+    <?php
     require "encabezado.php";
     ?>
 
     </header>
 
     <main class="dashboard">
-        <h2>Bienvenido(a)</h2>
-
+        <h2>Mi CV´S</h2>
+        <br>
         <div class="cards">
             <div class="card">
                 <p>Total de CVs</p>
                 <h3>12</h3>
                 <small>+2 desde el mes pasado</small>
+                <br>
+                <div class="crud">
+                    <a href="#" class="btn_borrar"><i class="fa-solid fa-trash-can"></i></a>
+                    <a href="#" class="brn_editar"><i class="fa-solid fa-file-pen"></i></a>
+                    <a href="" class="btn_descargar"><i class="fa-solid fa-file-arrow-down"></i></a>
+                </div>
             </div>
         </div>
 

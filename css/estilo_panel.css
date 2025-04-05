@@ -12,6 +12,7 @@
   :root{
     --color_azul:#225576;
     --color_rojo:#732054;
+    --color_verde:#387534;
   }
   .logo{
     border: 0cap red solid;
@@ -120,6 +121,96 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(34,85,118,1) 35%, rgb
     color: white;
     display: none;
   }
+  /* Para editar */
+  .crud{
+    display: flex;
+    justify-content: space-around;
+  }
+  .btn_borrar{
+    color: red;
+    padding: 5px 25px;
+    border-radius: 5px;
+  }
+  .brn_editar{
+    color: var(--color_azul);
+    padding: 5px 25px;
+    border-radius: 5px;
+  }
+  .btn_descargar{
+    color: #636571;
+    padding: 5px 25px;
+    border-radius: 5px;
+  }
+  .btn_borrar:hover{
+    color: white;
+    background-color: red;
+  }
+  .brn_editar:hover{
+    color: white;
+    background-color: var(--color_azul);
+  }
+  .btn_descargar:hover{
+    color: white;
+    background-color: var(--color_rojo);
+  }
+  /* Del perfil */
+  form {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  form input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border 0.3s;
+  }
+  
+  form input[type="text"]:focus {
+    border: 1px solid #00b3b3;
+    outline: none;
+    background-color: #fff;
+  }
+  form input[type="button"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border 0.3s;
+    background-color: var(--color_azul);
+    color: white;
+  }
+  
+  form input[type="button"]:hover {
+    background-color: var(--color_verde);
+    outline: none;
+  }
+  @media screen and (max-width: 480px) {
+    form {
+      padding: 20px;
+    }
+  
+    form input[type="text"] {
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
+  .foto_perfil{
+    border: 1px red solid;
+    width: 100px;
+    margin: auto;
+  }
+
   @media (max-width: 768px) {
     .btn_bar {
       display: block;

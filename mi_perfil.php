@@ -11,20 +11,29 @@
 </head>
 
 <body>
-    <?php 
+    <?php
     require "encabezado.php";
     ?>
 
     </header>
 
     <main class="dashboard">
-        <h2>Bienvenido(a)</h2>
-
+        <h2>Perfil</h2>
+        <br>
         <div class="cards">
             <div class="card">
-                <p>Total de CVs</p>
-                <h3>12</h3>
-                <small>+2 desde el mes pasado</small>
+                <form action="">
+                    <!-- Aqui iria la foto de perfil -->
+                    <figure class="foto_perfil">
+                        <img src="" alt="">
+                    </figure>
+                    <br>
+                    <input type="text" placeholder="Nombre">
+                    <br>
+                    <input type="text" placeholder="Contraseña">
+                    <br>
+                    <input type="button" value="Guardar">
+                </form>
             </div>
         </div>
 
