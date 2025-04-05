@@ -1,6 +1,6 @@
 <header class="nav-bar">
         <figure class="logo">
-            <img src="imagenes/GenMyCV-r.png" alt="">
+            <img src="imagenes/gne.png" alt="">
         </figure>
 
         <!-- Menú -->

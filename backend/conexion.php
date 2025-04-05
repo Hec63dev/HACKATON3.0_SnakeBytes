@@ -1,4 +1,8 @@
 <?php
+// $host = "localhost";
+// $user = "u335201238_fulanito";
+// $password = "Ertertertert45654g464677g4@";
+// $bd = "u335201238_gencv";
 
 $host = "localhost";
 $usuario = "root";

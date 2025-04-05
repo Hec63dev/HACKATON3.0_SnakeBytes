@@ -9,11 +9,11 @@
 <body>
   <div class="login-container">
     <div class="titulo">
-      <h1>GenMyCV</h1>
+      <img src="imagenes/gne.png" alt="">
     </div>
     <br>
     <h2>Iniciar Sesión</h2>
-    <form action="backend/verificar.php" method="POST">
+    <form action="./backend/verificar.php" method="POST">
       <label for="#">Correo electronico:</label>
       <input type="text" name="correo" placeholder="Ingrese su Correo" required><br>
       <label for="#">Contraseña:</label>

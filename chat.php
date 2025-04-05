@@ -1,53 +1,57 @@
 <?php
-include "conexiont.php";
-
-$apiKey = "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";  // Reemplaza con tu API Key real
-$userMessage = $_POST['text'] ?? '';
-
 session_start();
-if (!isset($_SESSION['historial'])) $_SESSION['historial'] = [];
+header('Content-Type: application/json');
 
-array_push($_SESSION['historial'], ["role" => "user", "content" => $userMessage]);
-
-$data = [
-    "model" => "anthropic/claude-3-haiku",
-    "messages" => array_merge(
-        [["role" => "system", "content" => "Eres un asistente para ayudar a crear un CV. Realiza preguntas paso a paso y espera la respuesta antes de continuar."]],
-        $_SESSION['historial']
-    ),
-    "temperature" => 0.7
+$preguntas = [
+    "¿Cuál es tu nombre completo?",
+    "¿Cuál es tu número de teléfono y correo electrónico?",
+    "¿Tienes LinkedIn, portafolio web o redes profesionales relevantes?",
+    "¿Cuál es tu dirección (opcional, dependiendo del país)?",
+    "¿Cuál es tu profesión o área de expertise?",
+    "¿Qué te define como profesional en 3-4 líneas?",
+    "¿Qué valor puedes aportar a una empresa?",
+    "¿Cuáles han sido tus trabajos anteriores (empresa, puesto, periodo)?",
+    "¿Cuáles fueron tus principales logros en cada puesto?",
+    "¿Tienes experiencia freelance o proyectos relevantes?",
+    "¿Qué títulos o certificaciones tienes (universidad, técnico, cursos)?",
+    "¿Incluyes año de inicio y graduación?",
+    "¿Qué habilidades técnicas dominas (herramientas, idiomas, software)?",
+    "¿Qué habilidades interpersonales destacan en ti?",
+    "¿Has recibido premios, reconocimientos o certificaciones relevantes?",
+    "¿Has participado en voluntariados o proyectos extracurriculares?",
+    "¿Qué idiomas hablas y en qué nivel (B1, C2, nativo)?",
+    "¿Incluirás referencias laborales o será 'disponibles bajo petición'?",
+    "¿Tienes disponibilidad para viajar o reubicarte?",
+    "¿Quieres añadir información adicional (intereses, blog, publicaciones)?"
 ];
 
-$headers = [
-    "Authorization: Bearer $apiKey",
-    "Content-Type: application/json",
-    "HTTP-Referer: https://tusitio.com",
-    "X-Title: CVBot"
-];
-
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "https://openrouter.ai/api/v1/chat/completions");
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-$response = curl_exec($ch);
-curl_close($ch);
-
-$result = json_decode($response, true);
-
-if (isset($result['choices'][0]['message']['content'])) {
-    $respuesta = $result['choices'][0]['message']['content'];
-    array_push($_SESSION['historial'], ["role" => "assistant", "content" => $respuesta]);
-
-    // GUARDAR en la base de datos
-    $stmt = $con->prepare("INSERT INTO respuestas_cv (pregunta, respuesta) VALUES (?, ?)");
-    $stmt->bind_param("ss", $userMessage, $respuesta);
-    $stmt->execute();
-    $stmt->close();
-
-    echo nl2br($respuesta);
-} else {
-    echo "❌ Error:<pre>" . print_r($result, true) . "</pre>";
+// Inicializa sesión si no existe
+if (!isset($_SESSION['chuy'])) {
+    $_SESSION['chuy'] = 0;
+    $_SESSION['respuestas'] = [];
 }
-?>
+
+// Recoge respuesta del usuario y avanza
+$data = json_decode(file_get_contents('php://input'), true);
+$respuestaUsuario = $data['message'] ?? '';
+
+if ($_SESSION['chuy'] > 0) {
+    $_SESSION['respuestas'][] = $respuestaUsuario;
+}
+
+if ($_SESSION['chuy'] < count($preguntas)) {
+    $preguntaActual = $preguntas[$_SESSION['chuy']];
+    $_SESSION['chuy']++;
+    echo json_encode(["reply" => $preguntaActual]);
+} else {
+    // Fin del flujo de preguntas: arma un resumen (o podríamos exportar un PDF aquí)
+    $resumen = "¡Gracias! Has completado el cuestionario. Aquí están tus respuestas:\n\n";
+    foreach ($preguntas as $i => $pregunta) {
+        $resumen .= $pregunta . "\n" . ($_SESSION['respuestas'][$i] ?? 'No respondido') . "\n\n";
+    }
+
+    // Limpiar sesión si se quiere reiniciar
+    session_destroy();
+
+    echo json_encode(["reply" => nl2br($resumen)]);
+}

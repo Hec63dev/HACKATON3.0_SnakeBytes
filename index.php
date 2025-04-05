@@ -2,124 +2,124 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asistente para Crear CV</title>
+    <title>Generador de CV con IA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f1f1f1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .chat-container {
-            width: 350px;
-            max-width: 100%;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-            padding: 15px;
-        }
-
-        .chat-box {
-            height: 300px;
-            overflow-y: auto;
-            margin-bottom: 15px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-        }
-
-        .chat-box .message {
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 10px;
-            max-width: 80%;
-        }
-
-        .chat-box .user-message {
-            background-color: #007bff;
-            color: white;
-            align-self: flex-end;
-        }
-
-        .chat-box .bot-message {
-            background-color: #e0e0e0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #f1f2f6, #dbeafe);
             color: #333;
-            align-self: flex-start;
         }
-
-        .input-container {
-            display: flex;
-        }
-
-        .input-container input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 25px;
-            border: 1px solid #ccc;
-            margin-right: 10px;
-        }
-
-        .input-container button {
-            background-color: #007bff;
+        header {
+            background: rgb(2,0,36);
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(34,85,118,1) 35%, rgba(0,212,255,1) 100%);
+            padding: 20px;
+            text-align: center;
             color: white;
-            border: none;
-            border-radius: 25px;
-            padding: 10px 20px;
-            cursor: pointer;
         }
+        header h1 {
+            font-size: 2.5em;
+        }
+        .hero {
+    position: relative;
+    background-image: url('imagenes/slide.jpeg');
+    background-size: cover;
+    background-position: center;
+    padding: 60px 20px;
+    color: white;
+    text-align: center;
+    z-index: 1;
+}
 
-        .input-container button:hover {
-            background-color: #0056b3;
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro con 50% opacidad */
+    z-index: -1;
+}
+
+        .hero h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        .hero button {
+            padding: 15px 30px;
+            background-color: #0d6efd;
+            border: none;
+            color: white;
+            font-size: 1em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .hero button:hover {
+            background-color: #084298;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 40px 20px;
+            background-color: white;
+        }
+        .feature {
+            max-width: 300px;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            background-color: #f1f5f9;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .feature h3 {
+            margin-bottom: 10px;
+        }
+        footer {
+            background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(115,32,84,1) 35%, rgba(0,212,255,1) 100%);
+            text-align: center;
+            padding: 15px;
+            color: white;
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
+    <header>
+        <h1>Generador Inteligente de CV</h1>
+    </header>
 
-<div class="chat-container">
-    <h3>Asistente para Crear CV</h3>
-    <div class="chat-box" id="chat-box">
-        <!-- Los mensajes del chat aparecerán aquí -->
-    </div>
+    <section class="hero">
+        <h2>¡Crea tu CV profesional en minutos!</h2>
+        <p>Con nuestro chatbot inteligente, responde preguntas clave y genera tu currículum al instante.</p>
+        <button onclick="location.href='login.php'">Comenzar Ahora</button>
+    </section>
 
-    <div class="input-container">
-        <input type="text" id="user-message" placeholder="Escribe tu mensaje..." required>
-        <button onclick="sendMessage()">Enviar</button>
-    </div>
-</div>
+    <section class="features">
+        <div class="feature">
+            <h3>Asistente por Chat</h3>
+            <p>Un chatbot interactivo te guiará paso a paso para recolectar tu información.</p>
+        </div>
+        <div class="feature">
+            <h3>Plantillas Profesionales</h3>
+            <p>Elige entre múltiples estilos para tu CV y personalízalo según tu perfil.</p>
+        </div>
+        <div class="feature">
+            <h3>Exportación Rápida</h3>
+            <p>Descarga tu CV en PDF o envíalo por correo directamente desde la app.</p>
+        </div>
+    </section>
 
-<script>
-    function sendMessage() {
-        const userMessage = document.getElementById('user-message').value;
-        if (userMessage.trim() === '') return;
-
-        // Añadir el mensaje del usuario al chat
-        const chatBox = document.getElementById('chat-box');
-        chatBox.innerHTML += `<div class="message user-message">${userMessage}</div>`;
-        document.getElementById('user-message').value = '';
-
-        // Enviar el mensaje al servidor
-        fetch('chat.php', {
-            method: 'POST',
-            body: new URLSearchParams({
-                'text': userMessage
-            }),
-        })
-        .then(response => response.text())
-        .then(data => {
-            // Añadir la respuesta del bot al chat
-            chatBox.innerHTML += `<div class="message bot-message">${data}</div>`;
-            chatBox.scrollTop = chatBox.scrollHeight; // Desplazar hacia abajo
-        })
-        .catch(error => {
-            chatBox.innerHTML += `<div class="message bot-message">Error al procesar tu mensaje.</div>`;
-        });
-    }
-</script>
-
+    <footer>
+        &copy; 2025 Generador de CV | Desarrollado por TuEquipo
+    </footer>
 </body>
 </html>

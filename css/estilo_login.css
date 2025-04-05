@@ -81,8 +81,12 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(34,85,118,1) 35%, rgb
   }
   .titulo{
     margin: auto;
-    width: 50%;
+    width: 150px;
     color: var(--color_azul);
+  }
+  .titulo img{
+    width: 100%;
+    display: block;
   }
 
   

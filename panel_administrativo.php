@@ -22,9 +22,8 @@
 
         <div class="cards">
             <div class="card">
-                <p>Total de CVs</p>
-                <h3>12</h3>
-                <small>+2 desde el mes pasado</small>
+                <p>sddsds</p>
+                <a href="chuy.php">Inicia call_user_method_array</a>
             </div>
         </div>
 
